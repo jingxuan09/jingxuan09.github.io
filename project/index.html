@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 600px;
+            height: 700px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>图片加载示例</h1>
+    <p>下面的图片将从网络加载：</p>
+    <div></div>
+    <img>
+    <script>
+        fetch('https://picsum.photos/600/700')
+            .then(Response => Response.blob())
+            .then(blob => {
+                document.querySelector('img').src = URL.createObjectURL(blob)
+            })
+        document.querySelector('img').addEventListener('load', () => {
+            document.body.appendChild(document.createElement('p')).innerText = '图片加载完成'
+        });
+    </script>
+</body>
+
+</html>
