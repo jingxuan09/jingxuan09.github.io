@@ -8,8 +8,16 @@
 </head>
 
 <body>
+    <img>
     <script>
-        document.writeln('<h1>TEST!</h1>');
+        fetch('https://picsum.photos/600/700')
+            .then(Response => Response.blob())
+            .then(blob => {
+                document.querySelector('img').src = URL.createObjectURL(blob)
+            })
+        document.querySelector('img').addEventListener('load', () => {
+            document.body.appendChild(document.createElement('p')).innerText = '图片加载完成'
+        });
     </script>
 </body>
 
